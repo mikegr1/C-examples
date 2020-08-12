@@ -1,0 +1,439 @@
+//serial number: 11
+//Author: Michael Griggs
+//Due Date: April 20th, 2020
+//Spring 2020 - CS3358 - 252
+//instructor: Husain Gholoom
+//Description: this program generates an array and preforms sorting functions that sort the array in various ways to demonstrate
+//understanding of sorting algorithims in c++
+
+#include <iostream>
+#include <ctime>
+#include <string>
+
+
+using namespace std;
+
+void display(char arr1[], int size1 );//done
+
+void sequentialSearch(char arr[], int sizee);//done//timeDone
+
+void selectionSort(char arr2[], int size2);//done//timeDone
+
+void insertionSort(char arr3[], int size3);//done//timeDone
+
+int quickSortMiddle(char arr4[], int start, int ende);//done
+
+int quickSortMiddleMinusOne(char arr5[], int start1, int end1);//done
+
+int quickSortFirst(char arr6[], int start2, int end2);//done
+
+int quickSortLast(char arr7[], int start3, int end3);//done
+
+void sequentialSearchAfter(char arr8[], int size4);//done//timeDone
+
+
+
+int main()
+{
+string middleSort = "Quick sort - The middle as pivot: \n";
+string middleMinusOneSort = "Quick sort - The middle - 1 as pivot: \n";
+string firstSort = "Quick sort - The first as pivot: \n";
+string lastSort = "Quick sort - The last as pivot: \n";
+string stt = "Time started: ";
+string ent = "Time ended: ";
+string elt = "Actual CPU time: ";
+string srtel ="Sorted elements: ";
+string numRecCall = "Number of recursive calls: ";
+string promptInput = "Enter size of the array: ";
+int realSize;
+cout<<promptInput;
+cin>>realSize;
+if(realSize<=4){
+  cout<<"\n *** ERROR - invalid input - size must be > 4 ***"<<endl;
+  return 0;
+  }
+char realArray[realSize];
+char realArray1[realSize];
+char realArray2[realSize];
+char realArray3[realSize];
+char realArray4[realSize];
+char realArray5[realSize];
+char realArray6[realSize];
+char realArray7[realSize];
+
+for(int p = 0; p < realSize; p++){
+  int max, min, range;
+  max = 126;
+  min = 33;
+  range = max-min + 1;
+  int randomNumber = rand()%range + min;
+  realArray[p] = char(randomNumber);
+  realArray1[p] = char(randomNumber);
+  realArray2[p] = char(randomNumber);
+  realArray3[p] = char(randomNumber);
+  realArray4[p] = char(randomNumber);
+  realArray5[p] = char(randomNumber);
+  realArray6[p] = char(randomNumber);
+  realArray7[p] = char(randomNumber);
+  }
+
+display(realArray, realSize);
+cout<<"\n\n";
+sequentialSearch(realArray1, realSize);
+cout<<"\n\n";
+cout<<"Selection sort: "<<endl;
+selectionSort(realArray2, realSize);
+cout<<"\n\n";
+cout<<"Insertion sort: "<<endl;
+insertionSort(realArray3, realSize);
+cout<<"\n\n";
+
+cout<<middleSort;
+clock_t cstartmid = clock();
+double cstartmi = (1000.00 * cstartmid)/CLOCKS_PER_SEC;
+int realcount = quickSortMiddle(realArray4, 0, realSize);
+clock_t cendmid = clock();
+double cendmi = (1000.00 * cendmid)/CLOCKS_PER_SEC;
+double elapsedmi = (1000.00 * (cendmid - cstartmid))/CLOCKS_PER_SEC;
+cout<<stt<<cstartmi<<endl;
+cout<<ent<<cendmi<<endl;
+cout<<elt<<elapsedmi<<endl;
+cout<<numRecCall<<realcount<<endl;
+cout<<srtel;
+for(int cva = 0; cva < realSize; cva++){
+  cout<<realArray4[cva]<<" ";
+}
+cout<<"\n\n";
+
+cout<<middleMinusOneSort;
+clock_t cstartmidminus = clock();
+double cstartmidmin = (1000.00 * cstartmidminus)/CLOCKS_PER_SEC;
+int realcount1 = quickSortMiddleMinusOne(realArray5, 0, realSize);
+clock_t cendmidminus = clock();
+double cendmidmin = (1000.00 * cendmidminus)/CLOCKS_PER_SEC;
+double elapsedmidminus = (1000.00 * (cendmidminus - cstartmidminus))/CLOCKS_PER_SEC;
+cout<<stt<<cstartmidmin<<endl;
+cout<<ent<<cendmidmin<<endl;
+cout<<elt<<elapsedmidminus<<endl;
+cout<<numRecCall<<realcount1<<endl;
+cout<<srtel;
+for(int cvh = 0; cvh < realSize; cvh++){
+  cout<<realArray5[cvh]<<" ";
+}
+cout<<"\n\n";
+
+cout<<firstSort;
+clock_t cstartfirst = clock();
+double cstart1st = (1000.00 * cstartfirst)/CLOCKS_PER_SEC;
+int realcount2 = quickSortFirst(realArray6, 0, realSize);
+clock_t cendfirst = clock();
+double cend1st = (1000.00 * cendfirst)/CLOCKS_PER_SEC;
+double elapsed1st = (1000.00 * (cendfirst - cstartfirst))/CLOCKS_PER_SEC;
+cout<<stt<<cstart1st<<endl;
+cout<<ent<<cend1st<<endl;
+cout<<elt<<elapsed1st<<endl;
+cout<<numRecCall<<realcount2<<endl;
+cout<<srtel;
+for(int cvg = 0; cvg < realSize; cvg++){
+  cout<<realArray6[cvg]<<" ";
+}
+cout<<"\n\n";
+
+cout<<lastSort;
+clock_t cstartlast = clock();
+double cstartfin = (1000.00 * cstartlast)/CLOCKS_PER_SEC;
+int realcount3 = quickSortLast(realArray7, 0, realSize);
+clock_t cendlast = clock();
+double cendfin = (1000.00 * cendlast)/CLOCKS_PER_SEC;
+double elapsedfin = (1000.00 * (cendlast - cstartlast))/CLOCKS_PER_SEC;
+cout<<stt<<cstartfin<<endl;
+cout<<ent<<cendfin<<endl;
+cout<<elt<<elapsedfin<<endl;
+cout<<numRecCall<<realcount3<<endl;
+cout<<srtel;
+for(int cv = 0; cv < realSize; cv++){
+  cout<<realArray7[cv]<<" ";
+}
+cout<<"\n\n";
+
+sequentialSearchAfter(realArray2, realSize);
+
+return 0;
+
+}
+
+
+void display(char arr1[], int size1){
+
+  cout<<"Displaying elements in array: ";
+  if(size1 > 20){
+    for(int i = 0; i < 20; i++){
+      cout<<arr1[i]<<" ";
+    }
+  }
+  else{
+    for(int j = 0; j < size1; j++){
+      cout<<arr1[j]<<" ";
+    }
+  }
+  cout<<endl;
+
+}
+
+void sequentialSearch(char arr[], int sizee){
+
+
+  int counter = 0;
+  bool eightyFound = false;
+
+  cout<<"search for 80"<<endl;
+
+
+  clock_t cstart = clock();
+
+  for(int x = 0; x < sizee; x++){
+    if(arr[x]==80){
+      counter++;
+      eightyFound = true;
+    }
+  }
+  clock_t cend = clock();
+
+  double timeStart = (1000.00 * cstart)/CLOCKS_PER_SEC;
+  double timeEnd = (1000.00 * cend)/CLOCKS_PER_SEC;
+  double elapsedTime = (1000.00 * (cend-cstart))/CLOCKS_PER_SEC;
+  if(eightyFound == true){
+    cout<<"80 is found"<<endl;
+    cout<<"Time start: "<<timeStart<<endl;
+    cout<<"Time ended: "<<timeEnd<<endl;
+    cout<<"Actual CPU time: "<<elapsedTime<<endl;
+    cout<<"Number of times 80 is found: "<<counter<<"\n";
+    for(int y = 0; y < 20; y++){
+    cout<<"Array elements: "<<arr[y]<<" ";
+    }
+  }
+  else if(eightyFound == false){
+    cout<<"80 is not found"<<endl;
+    }
+
+  cout<<endl;
+}
+
+void selectionSort(char arr2[], int size2){
+  int i, j, min_idx;
+  int counter = 0;
+  clock_t cstart = clock();
+  for(i = 0; i < size2-1; i++){
+    min_idx = i;
+    for(j = i+1; j < size2; j++){
+      if (arr2[j] < arr2[min_idx]){
+           min_idx = j;
+           counter++;
+        }
+      }
+      char temp = arr2[min_idx];
+      arr2[min_idx] = arr2[i];
+      arr2[i] = temp;
+   }
+  clock_t cend = clock();
+
+  double timeStart = (1000.00 * cstart)/CLOCKS_PER_SEC;
+  double timeEnd = (1000.00 * cend)/CLOCKS_PER_SEC;
+  double elapsedTime = (1000.00 * (cend-cstart))/CLOCKS_PER_SEC;
+  cout<<"Time started: "<<timeStart<<endl;
+  cout<<"Time ended: "<<timeEnd<<endl;
+  cout<<"Actual CPU time: "<<elapsedTime<<endl;
+  cout<<"Total number of swaps: "<<counter<<endl;
+  cout<<"Sorted elements: ";
+  for(int b = 0; b < size2; b++){
+    if(size2>20){
+      for(int v = 0; v < 20; v++){
+        cout<<arr2[v]<<" ";
+      }
+    }
+    else if(size2<20){
+      cout<<arr2[b]<<" ";
+    }
+  }
+  cout<<endl;
+}
+
+void insertionSort(char arr3[], int size3){
+  int j;
+  int counter = 0;
+  char key;
+  clock_t cstart = clock();
+  for(int i = 1; i<size3; i++) {
+    key = arr3[i];
+    j = i;
+    while(j > 0 && arr3[j-1]>key) {
+      arr3[j] = arr3[j-1];
+      j--;
+      counter++;
+     }
+     arr3[j] = key;
+  }
+  clock_t cend = clock();
+
+  double timeStart = (1000.00 * cstart)/CLOCKS_PER_SEC;
+  double timeEnd = (1000.00 * cend)/CLOCKS_PER_SEC;
+  double elapsedTime= (1000.00 * (cend-cstart))/CLOCKS_PER_SEC;
+
+  cout<<"Time started: "<<timeStart<<endl;
+  cout<<"Time ended: "<<timeEnd<<endl;
+  cout<<"Actual CPU time: "<<elapsedTime<<endl;
+  cout<<"Total number of comparisons: "<<counter<<endl;
+  cout<<"Sorted elements: ";
+
+  if(size3>20){
+    for(int f = 0; f < 20; f++){
+      cout<<arr3[f]<<" ";
+    }
+  }
+  else{
+    for(int l = 0; l < size3; l++){
+      cout<<arr3[l]<<" ";
+    }
+  }
+  cout<<endl;
+}
+
+int quickSortMiddle(char arr4[], int start, int ende){
+  char pivot = arr4[start/2];
+  int leftIndex = start;
+
+  for(int i = start + 1; i < ende; i++){
+    if(arr4[i]<pivot){
+      char temp = arr4[i];
+      char temp1 = arr4[leftIndex];
+      arr4[i] = temp1;
+      arr4[leftIndex] = temp;
+      leftIndex = leftIndex + 1;
+    }
+  }
+
+
+  int counter;
+  if(leftIndex < ende){
+
+    quickSortMiddle(arr4, start, leftIndex);
+    quickSortMiddle(arr4, leftIndex + 1, ende);
+  }
+
+  counter++;
+  return counter;
+
+}
+
+int quickSortMiddleMinusOne(char arr5[], int start1, int end1){
+  char pivot = arr5[(start1/2)-1];
+  int leftIndex = start1;
+
+  for(int i = start1 + 1; i < end1; i++){
+    if(arr5[i]<pivot){
+      char temp = arr5[i];
+      char temp1 = arr5[leftIndex];
+      arr5[i] = temp1;
+      arr5[leftIndex] = temp;
+      leftIndex = leftIndex + 1;
+    }
+  }
+
+  int counter;
+  if(leftIndex < end1){
+    quickSortMiddleMinusOne(arr5, start1, leftIndex);
+    quickSortMiddleMinusOne(arr5, leftIndex + 1, end1);
+  }
+
+  counter++;
+  return counter;
+
+}
+
+
+int quickSortFirst(char arr6[], int start2, int end2){
+  char pivot = arr6[0];
+  int leftIndex = start2;
+
+  for(int i = start2 + 1; i < end2; i++){
+    if(arr6[i]<pivot){
+      char temp = arr6[i];
+      char temp1 = arr6[leftIndex];
+      arr6[i] = temp1;
+      arr6[leftIndex] = temp;
+      leftIndex = leftIndex + 1;
+    }
+  }
+
+
+  int counter;
+  if(leftIndex < end2){
+
+    quickSortFirst(arr6, start2, leftIndex);
+    quickSortFirst(arr6, leftIndex + 1, end2);
+  }
+
+  counter++;
+  return counter;
+}
+
+int quickSortLast(char arr7[], int start3, int end3){
+  char pivot = arr7[end3];
+  int leftIndex = start3;
+
+  for(int i = start3 + 1; i < end3; i++){
+    if(arr7[i]<pivot){
+      char temp = arr7[i];
+      char temp1 = arr7[leftIndex];
+      arr7[i] = temp1;
+      arr7[leftIndex] = temp;
+      leftIndex = leftIndex + 1;
+    }
+
+  }
+
+
+  int counter;
+
+
+  counter++;
+  return counter;
+}
+
+void sequentialSearchAfter(char arr8[], int size4){
+
+
+
+  int counter = 0;
+  bool eightyFound = false;
+
+  cout<<"Search for 80 after sorting"<<endl;
+  clock_t cstart = clock();
+
+  for(int x = 0; x < size4; x++){
+    if(arr8[x]==80){
+      counter++;
+      eightyFound = true;
+    }
+  }
+  clock_t cend = clock();
+
+  double timeStart = (1000.00 * cstart)/CLOCKS_PER_SEC;
+  double timeEnd = (1000.00 * cend)/CLOCKS_PER_SEC;
+  double elapsedTime = (1000.00 * (cend-cstart))/CLOCKS_PER_SEC;
+  if(eightyFound == true){
+    cout<<"80 is found"<<endl;
+    cout<<"Time start: "<<timeStart<<endl;
+    cout<<"Time ended: "<<timeEnd<<endl;
+    cout<<"Actual CPU time: "<<elapsedTime<<endl;
+    cout<<"Number of times 80 is found: "<<counter<<"\n";
+    for(int y = 0; y < 20; y++){
+    cout<<"Array elements: "<<arr8[y]<<" ";
+    }
+  }
+
+  else if(eightyFound == false){
+    cout<<"80 is not found"<<endl;
+  }
+  cout<<endl;
+}

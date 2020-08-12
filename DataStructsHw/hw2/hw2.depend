@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1582097805 source:/Users/admin/Desktop/DataStructsHw/hw2/main.cpp
+	<iostream>
+	<cstdlib>
+	<vector>
+
